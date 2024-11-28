@@ -1,0 +1,13 @@
+
+Script in python language to monitor the events in the computer using MSYS2 and PyWin32 
+
+
+
+References: 
+    https://packages.msys2.org/packages/mingw-w64-x86_64-python-pywin32
+    https://packages.msys2.org/packages/mingw-w64-x86_64-python
+    https://packages.msys2.org/packages/mingw-w64-x86_64-python-pip
+    https://pypi.org/project/pywin32/
+    https://timgolden.me.uk/pywin32-docs/
+    https://www.msys2.org/
+    https://packages.msys2.org/packages/git
