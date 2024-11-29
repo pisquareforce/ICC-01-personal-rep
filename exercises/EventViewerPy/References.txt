@@ -3,10 +3,25 @@
 
 
 References:
-    https://packages.msys2.org/packages/mingw-w64-x86_64-python-pywin32
-    https://packages.msys2.org/packages/mingw-w64-x86_64-python
-    https://packages.msys2.org/packages/mingw-w64-x86_64-python-pip
+    https://packages.msys2.org/packages/mingw-w64-x86_64-python-pywin32 (remover)
+    https://packages.msys2.org/packages/mingw-w64-x86_64-python (remover)
+    https://packages.msys2.org/packages/mingw-w64-x86_64-python-pip (remover)
     https://pypi.org/project/pywin32/
     https://timgolden.me.uk/pywin32-docs/
-    https://www.msys2.org/
-    https://packages.msys2.org/packages/git
+    https://www.msys2.org/ (remover)
+    https://packages.msys2.org/packages/git (remover)
+    https://ph20eow.gitbook.io/tech-stuff/silketw/learning-win32evtlog-in-python
+    https://www.markjour.com/docs/pywin32-docs/win32evtlog__OpenEventLog_meth.html
+
+
+
+Code: # 
+import win32evtlog
+
+computer = None # None = Local
+logType = "Security"
+h=win32evtlog.OpenEventLog(computer, logType)
+flags= win32evtlog.EVENTLOG_BACKWARDS_READ|win32evtlog.EVENTLOG_SEQUENTIAL_READ
+evtLogs = win32evtlog.ReadEventLog(h, flags, 0)
+print(evtLogs[0])
+print(evtLogs[0].SourceName)
