@@ -70,6 +70,7 @@ function scanFile_createOUUser {
             }
 
             try {
+
                 # Create the user in the correct department OU
                 New-ADUser -SamAccountName $userName `
                            -UserPrincipalName "$userName@greenbloom.local" `
@@ -80,6 +81,9 @@ function scanFile_createOUUser {
                            -AccountPassword (ConvertTo-SecureString $Password -AsPlainText -Force) `
                            -Enabled $true `
                            -PasswordNeverExpires $true  # Add this to ensure the password never expires
+
+                #Set-ADUser -Identity $userName -ChangePasswordAtLogon $true
+                Set-ADUser -Identity $Username -ChangePasswordAtLogon $true -PasswordNeverExpires $false
 
                 Write-Output "Created user: $fullName ($userName) in $Department"
             }
@@ -132,16 +136,15 @@ function menu {
         
         Write-Host "You entered: $number"
         
-        
-        if ($number -eq 0) { 
+        if ( $number -eq 0 ) { 
             Write-Host "I am leaving ..."
             break
         }
-        if ($number -eq 1) { 
+        elseif ( $number -eq 1 ) { 
             scanFile_createOUUser
         }
 
-        elseif ($number -eq 2) {
+        elseif ( $number -eq 2 ) {
             Write-Host "Printing Organizational Units (OU):"
             $searchBase = "DC=greenbloom,DC=local"
             try {
@@ -156,7 +159,9 @@ function menu {
     }
 }
 
-
+#
+# 6. Main function 
+#
 function Main {
     menu
 }
